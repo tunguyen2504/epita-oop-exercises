@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="fr.epita.bank.datamodel.SavingAccount"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="fr.epita.geometry.datamodel.Triangle"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="fr.epita.geometry.datamodel.Circle"/>
+    <fullyQualifiedTypeName name="fr.epita.geometry.datamodel.Square"/>
+    <fullyQualifiedTypeName name="fr.epita.geometry.datamodel.Shape"/>
+    <fullyQualifiedTypeName name="javax.print.attribute.standard.Finishings"/>
+    <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="fr.epita.exercises.DaysInMonthEnum"/>
+    <fullyQualifiedTypeName name="java.awt.List"/>
+    <fullyQualifiedTypeName name="fr.epita.agefinder.datamodel.Person"/>
+    <fullyQualifiedTypeName name="fr.epita.agefinder.datamodel.DateOfBirth"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="jdk.internal.net.http.common.Log"/>
+    <fullyQualifiedTypeName name="fr.epita.logging.Logger"/>
+    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQQuestion"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.security.KeyStore.TrustedCertificateEntry"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.nio.file.Files"/>
+    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQQuestionCSVDAO"/>
+    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQChoice"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,11 @@
+package fr.epita.quizmanager.tests;
+
+import fr.epita.quizmanager.datamodel.MCQQuestionCSVDAO;
+
+public class TestMCQQuestionCSVDAO {
+
+	public static void main(String[] args) {
+		MCQQuestionCSVDAO dao = new MCQQuestionCSVDAO();
+
+	}
+}
