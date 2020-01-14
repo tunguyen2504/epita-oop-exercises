@@ -15,6 +15,8 @@ import fr.epita.quizmanager.datamodel.MCQQuestionCSVDAO;
 
 public class Launcher {
 
+//	private static MCQQuestionCSVDAO dao = new MCQQuestionCSVDAO();
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String option = "";
@@ -53,7 +55,7 @@ public class Launcher {
 
 	private static void createQuestions(Scanner scanner) {
 		MCQQuestionCSVDAO dao = new MCQQuestionCSVDAO();
-
+		
 		String isContinue = "";
 		Integer count = 1;
 		File file = dao.getFile();
@@ -83,12 +85,12 @@ public class Launcher {
 
 			MCQQuestion mcqQuestion = new MCQQuestion();
 
-			// Auto increment ID for question
+			//Auto increment ID for question
 			if (!file.exists()) {
 				mcqQuestion.setId(1L);
 			} else {
 				try {
-					long lineCount = Files.lines(Paths.get(file.getPath())).count(); // count the line number of file
+					long lineCount = Files.lines(Paths.get(file.getPath())).count(); //count the line number of file
 					mcqQuestion.setId(lineCount + 1);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -107,23 +109,23 @@ public class Launcher {
 			isContinue = scanner.nextLine();
 			count++;
 		} while (isContinue.equalsIgnoreCase("y"));
-
+		
 		dao.closeWriter();
 	}
 
 	private static void quizView() {
 		MCQQuestionCSVDAO dao = new MCQQuestionCSVDAO();
-
+		
 		System.out.println("\n-----Quiz View-----");
 		List<MCQQuestion> mcqQuestionList = new ArrayList<MCQQuestion>();
-
+		
 		try {
 			mcqQuestionList = dao.readAllQuestions();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		if (mcqQuestionList.size() != 0) {
 			for (int i = 0; i < mcqQuestionList.size(); i++) {
 				MCQQuestion question = mcqQuestionList.get(i);

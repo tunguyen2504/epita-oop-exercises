@@ -30,11 +30,7 @@ public class MCQQuestionCSVDAO {
 
 		}
 	}
-	
-	public void closeWriter() {
-		this.writer.close();
-	}
- 
+
 	public void createQuestionFile(MCQQuestion mcqQuestion) {
 		String formatted = String.valueOf(mcqQuestion.getId()) + COLUMN_DELIMITER;
 		formatted += String.valueOf(mcqQuestion.getDifficulty()) + COLUMN_DELIMITER + mcqQuestion.getContent()
@@ -63,6 +59,7 @@ public class MCQQuestionCSVDAO {
 		this.writer.println(formatted);
 		this.writer.flush();
 		
+		this.writer.close();
 	}
 
 	public List<MCQQuestion> readAllQuestions() throws FileNotFoundException {
