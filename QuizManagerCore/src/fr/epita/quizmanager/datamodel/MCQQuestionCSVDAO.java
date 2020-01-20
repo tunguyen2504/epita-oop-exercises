@@ -3,38 +3,29 @@ package fr.epita.quizmanager.datamodel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import fr.epita.quizmanager.services.Configuration;
 
 public class MCQQuestionCSVDAO {
 
-//	private static final String TOPIC_DELIMITER = "||||";
+//	private static final String TOPIC_DELIMITER = "\\|\\|\\|"; //you have to protect the | symbol to split it correctly
 	private static final String TOPIC_DELIMITER = "@@@@";
 	private static final String COLUMN_DELIMITER = "####";
 	private static final String CHOICE_DELIMITER = "%%%";
+	private static final String DATA_FILE = Configuration.getValueFromKey("data.file");
 
-	private File file = new File("/temp/questions.csv");
-	private PrintWriter writer;
+	private File file = new File(DATA_FILE);
 
 	public File getFile() {
 		return file;
 	}
 
-	public MCQQuestionCSVDAO() {
-		try {
-			this.writer = new PrintWriter(new FileOutputStream(this.file, true));
-		} catch (FileNotFoundException e) {
-
-		}
-	}
-	
-	public void closeWriter() {
-		this.writer.close();
-	}
- 
 	public void createQuestionFile(MCQQuestion mcqQuestion) {
 		String formatted = String.valueOf(mcqQuestion.getId()) + COLUMN_DELIMITER;
 		formatted += String.valueOf(mcqQuestion.getDifficulty()) + COLUMN_DELIMITER + mcqQuestion.getContent()
@@ -60,48 +51,62 @@ public class MCQQuestionCSVDAO {
 		}
 
 		// TODO write the formatted into a file
-		this.writer.println(formatted);
-		this.writer.flush();
-		
+		// If we create writer as resource of try, it will be closed automatically after
+		// the final block.
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream(this.file, true));) {
+			writer.println(formatted);
+			writer.flush();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public List<MCQQuestion> readAllQuestions() throws FileNotFoundException {
+	public List<MCQQuestion> readAllQuestions() {
 
 		List<MCQQuestion> results = new ArrayList<MCQQuestion>();
+		List<String> lines;
+		try {
+			if (this.file.exists()) {
+				lines = Files.readAllLines(this.file.toPath());
+				for (String line : lines) {
+					String[] parts = line.split(COLUMN_DELIMITER);
 
-		// TODO read all the line from the file
-		Scanner scanner = new Scanner(this.file);
-		String line = "";
-		while (scanner.hasNextLine()) {
-			line = scanner.nextLine();
-			String[] parts = line.split(COLUMN_DELIMITER);
+					Long id = Long.valueOf(parts[0]);
+					Integer difficulty = Integer.valueOf(parts[1]);
+					String content = parts[2];
+					String[] readTopics = parts[3].split(TOPIC_DELIMITER);
+					String[] readChoices = parts[4].split(CHOICE_DELIMITER);
+					List<MCQChoice> choices = new ArrayList<MCQChoice>();
 
-			Long id = Long.valueOf(parts[0]);
-			Integer difficulty = Integer.valueOf(parts[1]);
-			String content = parts[2];
-			String[] readTopics = parts[3].split(TOPIC_DELIMITER);
-			String[] readChoices = parts[4].split(CHOICE_DELIMITER);
-			List<MCQChoice> choices = new ArrayList<MCQChoice>();
+					for (int i = 0; i < readChoices.length; i++) {
+						MCQChoice choice = new MCQChoice();
+						choice.setChoice(readChoices[i]);
+						choices.add(choice);
+					}
 
-			for (int i = 0; i < readChoices.length; i++) {
-				MCQChoice choice = new MCQChoice();
-				choice.setChoice(readChoices[i]);
-				choices.add(choice);
+					// Reconstruct data read from the file
+					MCQQuestion reconstruction = new MCQQuestion();
+					reconstruction.setDifficulty(difficulty);
+					reconstruction.setContent(content);
+					reconstruction.setTopics(readTopics);
+					reconstruction.setChoices(choices);
+					reconstruction.setId(id);
+
+					results.add(reconstruction);
+				}
 			}
-
-			//Reconstruct data read from the file
-			MCQQuestion reconstruction = new MCQQuestion();
-			reconstruction.setDifficulty(difficulty);
-			reconstruction.setContent(content);
-			reconstruction.setTopics(readTopics);
-			reconstruction.setChoices(choices);
-			reconstruction.setId(id);
-
-			results.add(reconstruction);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		scanner.close();
 		return results;
+	}
+
+	public MCQQuestion getById(Long id) {
+		List<MCQQuestion> list = readAllQuestions();
+		return list.stream().filter(entry -> entry.getId() == id).collect(Collectors.toList()).get(0);
 	}
 
 }

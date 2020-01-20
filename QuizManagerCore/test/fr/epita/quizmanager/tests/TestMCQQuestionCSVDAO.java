@@ -18,25 +18,13 @@ public class TestMCQQuestionCSVDAO {
 		mcqQuestion.setTopics(new String[] { "java", "compilation", "environments" });
 		mcqQuestion.setId(1l);
 
-		dao.createQuestionFile(mcqQuestion);
-		
-		mcqQuestion.setDifficulty(5);
-		mcqQuestion.setContent("What can we do with SDK?");
-		mcqQuestion.setTopics(new String[] {"compilation", "environments" });
-		mcqQuestion.setId(2l);
-		
+		//when
 		dao.createQuestionFile(mcqQuestion);
 
+		//then
 		List<MCQQuestion> allQuestions = dao.readAllQuestions();
-		
-		for (MCQQuestion question : allQuestions) {
-			System.out.println(question.getId() + ". " + question.getContent());
-			System.out.println("Topics: ");
-			System.out.println(Arrays.asList(question.getTopics()));
-			for (String topic : question.getTopics()) {
-				System.out.print(topic + " ");
-			}
-			System.out.println("\n");
-		}
+		MCQQuestion readQuestion = allQuestions.get(0);
+		boolean success = readQuestion.getId().equals(mcqQuestion.getId());
+		System.out.println("Success? " + success);
 	}
 }
