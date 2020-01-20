@@ -1,0 +1,2 @@
+drop table if exists mcqquestion;
+create table mcqquestions (id long auto_increment, content varchar(255) not null, difficulty int not null);
