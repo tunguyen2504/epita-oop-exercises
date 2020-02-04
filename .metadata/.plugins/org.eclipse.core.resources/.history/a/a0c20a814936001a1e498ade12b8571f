@@ -1,8 +1,0 @@
-package fr.epita.quizmanager.datamodel;
-
-public class MCQQuestion {
-	private Long id;
-	private String question;
-	private Integer difficulty;
-	private String[] topics;
-}

@@ -1,0 +1,33 @@
+package fr.epita.quizmanager.services;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import fr.epita.quizmanager.datamodel.MCQQuestion;
+
+public class MCQQuestionJDBCDAO {
+
+	public void create(MCQQuestion mcqQuestion) throws SQLException {
+		PreparedStatement preparedStatement = getConnection()
+				.prepareStatement("INSERT INTO MCQQUESTIONS (CONTENT, DIFFICULTY) VALUES (?, ?);");
+
+		MCQQuestion question = new MCQQuestion();
+		question.setDifficulty(3);
+		question.setContent("What is a H2 Database");
+
+		preparedStatement.setString(1, question.getContent());
+		preparedStatement.setInt(2, question.getDifficulty());
+		int id = preparedStatement.executeUpdate();
+	}
+	
+	private static Connection getConnection() throws SQLException {
+		// To connect to the database
+		String url = "jdbc:h2:D:/eclipse-workspace/quizmanager";
+		String user = "sa";
+		String password = "";
+
+		return DriverManager.getConnection(url, user, password);
+	}
+}

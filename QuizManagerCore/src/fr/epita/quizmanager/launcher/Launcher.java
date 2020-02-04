@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import fr.epita.quizmanager.datamodel.MCQChoice;
 import fr.epita.quizmanager.datamodel.MCQQuestion;
-import fr.epita.quizmanager.datamodel.MCQQuestionCSVDAO;
+import fr.epita.quizmanager.services.MCQQuestionCSVDAO;
 
 public class Launcher {
 

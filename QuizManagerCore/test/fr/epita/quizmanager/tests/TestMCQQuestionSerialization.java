@@ -17,36 +17,31 @@ public class TestMCQQuestionSerialization {
 		mcqQuestion.setTopics(new String[] { "java", "compilation", "environments" });
 		mcqQuestion.setId(1l);
 
-		// Formating to CSV
-		// id; difficulty; content; topics
+		// formatting to csv
+		// id;difficulty;question_content;topic1|topic2|topic3
 		String formatted = String.valueOf(mcqQuestion.getId()) + COLUMN_DELIMITER;
-		formatted += String.valueOf(mcqQuestion.getDifficulty()) + COLUMN_DELIMITER + mcqQuestion.getContent()
-				+ COLUMN_DELIMITER;
-
+		formatted += String.valueOf(mcqQuestion.getDifficulty()) + COLUMN_DELIMITER;
+		formatted += mcqQuestion.getContent() + COLUMN_DELIMITER;
 		String[] topics = mcqQuestion.getTopics();
-
 		for (int i = 0; i < topics.length; i++) {
-			if (i == topics.length - 1) {
-				formatted += topics[i] + COLUMN_DELIMITER;
-			} else {
-				formatted += topics[i] + TOPIC_DELIMITER;
-			}
+			formatted += topics[i] + TOPIC_DELIMITER;
 		}
-
 		System.out.println("formatted");
 		System.out.println(formatted);
+
+		// reconstruction phase
+
 		String[] parts = formatted.split(COLUMN_DELIMITER);
 		System.out.println(Arrays.asList(parts));
 		Long id = Long.valueOf(parts[0]);
 		Integer difficulty = Integer.valueOf(parts[1]);
-		String content = parts[2];
+		String question = parts[2];
 		String[] readTopics = parts[3].split(TOPIC_DELIMITER);
 
-		MCQQuestion reconstruction = new MCQQuestion();
-		reconstruction.setDifficulty(difficulty);
-		reconstruction.setContent(content);
-		reconstruction.setTopics(readTopics);
-		reconstruction.setId(id);
-
+		MCQQuestion reconstructed = new MCQQuestion();
+		reconstructed.setDifficulty(difficulty);
+		reconstructed.setId(id);
+		reconstructed.setContent(question);
+		reconstructed.setTopics(readTopics);
 	}
 }

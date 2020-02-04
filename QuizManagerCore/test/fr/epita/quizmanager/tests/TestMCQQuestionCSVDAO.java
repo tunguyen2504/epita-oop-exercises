@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.epita.quizmanager.datamodel.MCQQuestion;
-import fr.epita.quizmanager.datamodel.MCQQuestionCSVDAO;
+import fr.epita.quizmanager.services.MCQQuestionCSVDAO;
 
 public class TestMCQQuestionCSVDAO {
 

@@ -1,0 +1,11 @@
+package fr.epita.quizmanager.tests;
+
+public class TestJDBC {
+
+	public TestJDBC() {
+		//To connect to the database
+		String url = "jdbc:h2:D:/eclipse-workspace/quizmanager";
+		String user = "sa";
+		String password = "";
+	}
+}

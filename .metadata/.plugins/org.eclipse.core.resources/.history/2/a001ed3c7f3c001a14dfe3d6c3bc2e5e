@@ -1,0 +1,6 @@
+package fr.epita.quizmanager.services;
+
+public class Snippet {
+	INSERT INTO MCQQUESTIONS (CONTENT, DIFFICULTY) VALUES ('What is H2 database?', 4);
+}
+

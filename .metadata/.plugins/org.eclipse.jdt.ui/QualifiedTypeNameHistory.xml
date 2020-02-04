@@ -30,11 +30,15 @@
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.nio.file.Paths"/>
     <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQQuestionCSVDAO"/>
-    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQChoice"/>
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="fr.epita.quizmanager.services.Configuration"/>
-    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQQuestion"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQChoice"/>
+    <fullyQualifiedTypeName name="fr.epita.quizmanager.datamodel.MCQQuestion"/>
+    <fullyQualifiedTypeName name="fr.epita.quizmanager.services.MCQQuestionCSVDAO"/>
 </qualifiedTypeNameHistroy>
